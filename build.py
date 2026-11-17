@@ -16,6 +16,16 @@ def entries(folder):
  return result
 books=entries('devotionals');resources=entries('pastor-resources');posts=[p for p in entries('journal') if p.get('published') is True]
 settings=json.loads((root/'content/site.json').read_text())
+def media_url(value):
+ """Normalize CMS media paths to the public /media directory."""
+ if isinstance(value,dict):
+  value=value.get('src') or value.get('path') or value.get('url') or ''
+ value=str(value or '').strip()
+ if not value:return ''
+ if value.startswith(('https://','http://')):return value
+ value='/' + value.lstrip('/')
+ return value
+
 s=(root/'template.html').read_text()
 # Original presentation is preserved; replace hardcoded sample collections with CMS data.
 s=re.sub(r'const books=\[.*?\];function bookCard', 'const books='+json.dumps(books,ensure_ascii=False)+';function bookCard',s,count=1,flags=re.S)
@@ -33,10 +43,12 @@ s=s[:start]+'''const categories=['All',...new Set(resources.map(r=>r.category).f
 # Journal articles rendered as separate static pages for accessibility and indexing.
 for p in posts:
  body=mistune.html(p.get('body',''))
- page=f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(str(p.get('title','Journal')))} | Lost Then Found</title><style>body{{margin:0;background:#f8f6f0;color:#243b49;font:18px/1.75 system-ui,sans-serif}}main{{max-width:760px;margin:5rem auto;padding:0 24px}}a{{color:#246c61}}h1{{line-height:1.2}}img{{max-width:100%}}</style></head><body><main><a href="/index.html#journal">← Back to The Journal</a><h1>{html.escape(str(p.get('title','')))}</h1><p>{html.escape(str(p.get('date','')))}</p>{body}</main></body></html>'''
+ featured=media_url(p.get('image'))
+ featured_html=(f'<img src="{html.escape(featured,quote=True)}" alt="{html.escape(str(p.get("title","Journal image")),quote=True)}" style="display:block;width:100%;max-height:480px;object-fit:cover;border-radius:14px;margin:1.5rem 0">' if featured else '')
+ page=f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(str(p.get('title','Journal')))} | Lost Then Found</title><style>body{{margin:0;background:#f8f6f0;color:#243b49;font:18px/1.75 system-ui,sans-serif}}main{{max-width:760px;margin:5rem auto;padding:0 24px}}a{{color:#246c61}}h1{{line-height:1.2}}img{{max-width:100%}}</style></head><body><main><a href="/index.html#journal">← Back to The Journal</a><h1>{html.escape(str(p.get('title','')))}</h1><p>{html.escape(str(p.get('date','')))}</p>{featured_html}{body}</main></body></html>'''
  dest=out/'journal'/p['slug'];dest.mkdir(parents=True,exist_ok=True);(dest/'index.html').write_text(page)
 if posts:
- cards=''.join(f'''<article class="post"><div class="journal-art">{html.escape(str(p.get('title','')))}</div><div class="content"><div class="tag">The Journal</div><h3>{html.escape(str(p.get('title','')))}</h3><p>{html.escape(str(p.get('excerpt','')))}</p><a class="textlink" href="/journal/{p['slug']}/">Read article →</a></div></article>''' for p in posts)
+ cards=''.join(f'''<article class="post"><div class="journal-art">{(f'<img src="{html.escape(media_url(p.get("image")),quote=True)}" alt="{html.escape(str(p.get("title","Journal image")),quote=True)}" style="width:100%;height:100%;object-fit:cover">' if media_url(p.get('image')) else html.escape(str(p.get('title',''))))}</div><div class="content"><div class="tag">The Journal</div><h3>{html.escape(str(p.get('title','')))}</h3><p>{html.escape(str(p.get('excerpt','')))}</p><a class="textlink" href="/journal/{p['slug']}/">Read article →</a></div></article>''' for p in posts)
  s=re.sub(r'(<section class="page" id="journal".*?<div class="section"><div class="wrap"><div class="grid3">).*?(</div>\s*</div>\s*</div>\s*</section>)',lambda m:m.group(1)+cards+m.group(2),s,count=1,flags=re.S)
 else:
  s=re.sub(r'(<section class="page" id="journal".*?<div class="section"><div class="wrap"><div class="grid3">).*?(</div>\s*</div>\s*</div>\s*</section>)',lambda m:m.group(1)+'<p>Journal entries are coming soon.</p>'+m.group(2),s,count=1,flags=re.S)
