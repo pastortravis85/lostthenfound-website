@@ -1,0 +1,129 @@
+media:
+  - name: images
+    label: Images and book covers
+    input: media/images
+    output: /media/images
+    categories: [image]
+    rename: safe
+  - name: documents
+    label: Free PDF downloads
+    input: media/documents
+    output: /media/documents
+    extensions: [pdf]
+    rename: safe
+
+content:
+  - name: devotionals
+    label: Free Devotionals
+    type: collection
+    path: content/devotionals
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: text
+      - name: cover
+        label: Book cover
+        type: image
+        options:
+          media: images
+      - name: pdf
+        label: Free PDF
+        type: file
+        options:
+          media: documents
+          extensions: [pdf]
+      - name: amazon_url
+        label: Amazon paperback link
+        type: string
+      - name: published
+        label: Published
+        type: boolean
+      - name: body
+        label: Additional details
+        type: rich-text
+
+  - name: pastor-resources
+    label: Pastor & Ministry Resources
+    type: collection
+    path: content/resources
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    fields:
+      - name: title
+        label: Resource title
+        type: string
+        required: true
+      - name: category
+        label: Category
+        type: select
+        options:
+          values: [Sermon, Bible Study, Small Group, Student Ministry, Family Ministry, Other]
+      - name: description
+        label: Summary
+        type: text
+      - name: download
+        label: Downloadable PDF
+        type: file
+        options:
+          media: documents
+          extensions: [pdf]
+      - name: published
+        label: Published
+        type: boolean
+      - name: body
+        label: Teaching notes
+        type: rich-text
+
+  - name: journal
+    label: The Journal
+    type: collection
+    path: content/journal
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    fields:
+      - name: title
+        label: Article title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+      - name: excerpt
+        label: Short introduction
+        type: text
+      - name: cover
+        label: Featured image
+        type: image
+        options:
+          media: images
+      - name: published
+        label: Published
+        type: boolean
+      - name: body
+        label: Article
+        type: rich-text
+
+  - name: site-settings
+    label: Website Settings
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: title
+        label: Website title
+        type: string
+      - name: tagline
+        label: Homepage tagline
+        type: string
+      - name: mission
+        label: Ministry mission
+        type: text
+      - name: founder_bio
+        label: Founder biography
+        type: rich-text
