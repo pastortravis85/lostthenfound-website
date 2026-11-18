@@ -24,9 +24,16 @@ content:
         label: Title
         type: string
         required: true
-      - name: description
-        label: Description
-        type: text
+      - - name: category
+        label: Devotional Category
+        type: select
+        default: Bible Series
+        options:
+          values:
+            - value: Bible Series
+              label: A Journey Through the Bible
+            - value: Seasonal & Family
+              label: Seasonal & Family Devotionals
       - name: cover
         label: Book cover
         type: image
