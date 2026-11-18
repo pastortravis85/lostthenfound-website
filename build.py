@@ -53,7 +53,7 @@ if posts:
 else:
  s=re.sub(r'(<section class="page" id="journal".*?<div class="section"><div class="wrap"><div class="grid3">).*?(</div>\s*</div>\s*</div>\s*</section>)',lambda m:m.group(1)+'<p>Journal entries are coming soon.</p>'+m.group(2),s,count=1,flags=re.S)
 s=s.replace('Prototype preview · All book covers and resource entries shown here are illustrative placeholders.','Free biblical resources for the journey.')
-s=s.replace('Lost Then Found | Adventure in the Word',html.escape(settings.get('title','Lost Then Found'))+' | Adventure in the Word')
+ s=s.replace(     'Lost Then Found | Adventure in the Word',     html.escape(settings.get('title', 'Lost Then Found Ministries')) )
 # Resolve editor-managed website copy. Escape content before inserting into HTML.
 def cms_copy(match):
  key=match.group(1)
