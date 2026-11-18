@@ -35,27 +35,7 @@ start=s.index('function bookCard(');end=s.index("document.getElementById('year')
 s=s[:start]+'''function safe(x){return String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function safeUrl(x){const v=String(x||'').trim();return /^(https:\\/\\/|\\/media\\/)/i.test(v)?safe(v):'';}
 function bookCard(b){let pdf=safeUrl(b.pdf),amazon=safeUrl(b.amazon),cover=safeUrl(b.cover);return `<article class="resource"><div class="bookcover ${safe(b.style||'')}">${cover?`<img src="${cover}" alt="${safe(b.title)} cover" style="width:100%;height:100%;object-fit:contain">`:`<span>LOST THEN FOUND</span><strong>A Journey<br>Through the Bible</strong><em>${safe(b.title)}</em>`}</div><div class="content"><div class="tag">Free devotional PDF</div><h3>${safe(b.title)}</h3><p>${safe(b.description)}</p><div class="actions">${pdf?`<a class="btn primary" href="${pdf}" download>↓ Free PDF</a>`:'<span>PDF coming soon</span>'}${amazon?`<a class="textlink" href="${amazon}" target="_blank" rel="noopener noreferrer">Buy Paperback ↗</a>`:''}</div></div></article>`}
-:'<p>Seasonal and family devotionals are coming soon!</p>';
-
-  const groupedMarkup=`
-    <div style="grid-column:1/-1">
-      <h2 style="margin:0 0 8px">A Journey Through the Bible</h2>
-      <p style="margin:0 0 24px">Explore Scripture one book at a time.</p>
-    </div>
-    ${bibleMarkup}
-    <div style="grid-column:1/-1;margin-top:40px">
-      <h2 style="margin:0 0 8px">Seasonal & Family Devotionals</h2>
-      <p style="margin:0 0 24px">Biblical resources for families and special seasons.</p>
-    </div>
-    ${seasonalMarkup}`;
-
-  const home=document.getElementById('homeBooks');
-  const page=document.getElementById('bookGrid');
-
-  if(home)home.innerHTML=bibleMarkup;
-  if(page)page.innerHTML=groupedMarkup;
-}
-renderBooks();
+function renderBooks(){let markup=books.length?
 ''' +s[end:]
 start=s.index('const categories=');end=s.index('function navigate(',start)
 s=s[:start]+'''const categories=['All',...new Set(resources.map(r=>r.category).filter(Boolean))];document.getElementById('filterBar').innerHTML=categories.map(c=>`<button class="filter ${c==='All'?'active':''}" data-filter="${safe(c)}">${safe(c)}</button>`).join('');document.getElementById('filterBar').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(b)setFilter(b.dataset.filter)});function setFilter(c){activeFilter=c;document.querySelectorAll('.filter').forEach(b=>b.classList.toggle('active',b.dataset.filter===c));renderResources()}function renderResources(){let q=document.getElementById('resourceSearch').value.toLowerCase();let arr=resources.filter(r=>(activeFilter==='All'||r.category===activeFilter)&&(r.title+' '+r.description+' '+r.category).toLowerCase().includes(q));document.getElementById('resourceGrid').innerHTML=arr.length?arr.map(r=>`<article class="tile"><div class="tag">${safe(r.category||'Ministry resource')}</div><h3>${safe(r.title)}</h3><p>${safe(r.description)}</p>${safeUrl(r.download)?`<a class="textlink" href="${safeUrl(r.download)}" download>↓ Download resource</a>`:'<span>Download coming soon</span>'}</article>`).join(''):'<p>No resources match your search yet.</p>'}renderResources();
