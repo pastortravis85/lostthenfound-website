@@ -28,7 +28,7 @@ def media_url(value):
 
 s=(root/'template.html').read_text()
 # Original presentation is preserved; replace hardcoded sample collections with CMS data.
- s=re.sub(     r'const books=\[.*?\];function bookCard',     lambda m: 'const books=' + json.dumps(books, ensure_ascii=False) + ';function bookCard',     s,     count=1,     flags=re.S )
+s=re.sub(r'const books=\[.*?\];function bookCard', lambda m: 'const books='+json.dumps(books,ensure_ascii=False)+';function bookCard', s, count=1, flags=re.S)
 s=re.sub(r'const resources=\[.*?\];let activeFilter', 'const resources='+json.dumps(resources,ensure_ascii=False)+';let activeFilter',s,count=1,flags=re.S)
 # Replace legacy renderers and filters, retaining existing styles and navigation.
 start=s.index('function bookCard(');end=s.index("document.getElementById('year')",start)
