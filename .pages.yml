@@ -24,6 +24,9 @@ content:
         label: Title
         type: string
         required: true
+      - name: description
+        label: Description
+        type: text
       - name: category
         label: Devotional Category
         type: select
