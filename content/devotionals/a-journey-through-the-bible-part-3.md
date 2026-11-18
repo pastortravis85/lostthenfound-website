@@ -14,6 +14,7 @@ description: >-
   Whether you're beginning your Bible study journey or continuing to build a
   daily habit, these devotionals will help you spend meaningful time in
   Scripture.
+category: Bible Series
 cover: /media/images/part3kindlecover.jpg
 pdf: /media/documents/part3paperbackinterior.pdf
 amazon_url: https://a.co/d/09aZ7EL1
