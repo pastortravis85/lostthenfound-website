@@ -30,7 +30,6 @@ content:
       - name: category
         label: Devotional Category
         type: select
-        default: Bible Series
         options:
           values:
             - value: Bible Series
