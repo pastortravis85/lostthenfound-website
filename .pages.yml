@@ -127,3 +127,5 @@ content:
       - name: founder_bio
         label: Founder biography
         type: rich-text
+
+        type: rich-text
