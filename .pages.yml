@@ -124,8 +124,117 @@ content:
       - name: mission
         label: Ministry mission
         type: text
+      - name: announcement
+        label: Announcement
+        type: string
+      - name: home_eyebrow
+        label: Home Eyebrow
+        type: string
+      - name: home_headline
+        label: Home Headline
+        type: string
+      - name: home_intro
+        label: Home Intro
+        type: text
+      - name: home_note
+        label: Home Note
+        type: text
+      - name: home_mission_eyebrow
+        label: Home Mission Eyebrow
+        type: string
+      - name: home_mission_heading
+        label: Home Mission Heading
+        type: string
+      - name: home_mission_intro
+        label: Home Mission Intro
+        type: text
+      - name: home_devotional_heading
+        label: Home Devotional Heading
+        type: string
+      - name: home_devotional_intro
+        label: Home Devotional Intro
+        type: text
+      - name: home_pastors_heading
+        label: Home Pastors Heading
+        type: string
+      - name: home_pastors_intro
+        label: Home Pastors Intro
+        type: text
+      - name: home_journal_heading
+        label: Home Journal Heading
+        type: string
+      - name: home_journal_intro
+        label: Home Journal Intro
+        type: text
+      - name: devotionals_heading
+        label: Devotionals Heading
+        type: string
+      - name: devotionals_intro
+        label: Devotionals Intro
+        type: text
+      - name: devotionals_series_heading
+        label: Devotionals Series Heading
+        type: string
+      - name: devotionals_series_intro
+        label: Devotionals Series Intro
+        type: text
+      - name: pastors_heading
+        label: Pastors Heading
+        type: string
+      - name: pastors_intro
+        label: Pastors Intro
+        type: text
+      - name: pastors_library_heading
+        label: Pastors Library Heading
+        type: string
+      - name: pastors_library_intro
+        label: Pastors Library Intro
+        type: text
+      - name: journal_heading
+        label: Journal Heading
+        type: string
+      - name: journal_intro
+        label: Journal Intro
+        type: text
+      - name: shop_heading
+        label: Shop Heading
+        type: string
+      - name: shop_intro
+        label: Shop Intro
+        type: text
+      - name: about_heading
+        label: About Heading
+        type: string
+      - name: about_intro
+        label: About Intro
+        type: text
+      - name: about_mission_heading
+        label: About Mission Heading
+        type: string
+      - name: about_mission_intro
+        label: About Mission Intro
+        type: text
+      - name: about_mission_extra
+        label: About Mission Extra
+        type: string
+      - name: founder_name
+        label: Founder Name
+        type: string
       - name: founder_bio
-        label: Founder biography
-        type: rich-text
-
-        type: rich-text
+        label: Founder Bio
+        type: text
+      - name: support_heading
+        label: Support Heading
+        type: string
+      - name: support_intro
+        label: Support Intro
+        type: text
+      - name: support_why_heading
+        label: Support Why Heading
+        type: string
+      - name: support_why_intro
+        label: Support Why Intro
+        type: text
+      - name: footer_intro
+        label: Footer Intro
+        type: text
