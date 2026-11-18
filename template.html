@@ -39,6 +39,48 @@ footer{background:#204a43!important}button:focus-visible,a:focus-visible{outline
     width: 125px;
   }
 }
+
+/* Keep the logo and navigation on one row */
+.header .nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 24px;
+}
+
+.header .brand {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.header .site-logo {
+  display: block;
+  width: 135px;
+  height: auto;
+  max-width: 100%;
+}
+
+.header .links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-left: auto;
+}
+
+@media (max-width: 900px) {
+  .header .nav {
+    flex-wrap: wrap;
+  }
+
+  .header .links {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}
 </style><meta content="#204a43" name="theme-color"/></head><body><div class="announcement">{{setting:announcement}}</div><header class="header"><div class="wrap nav"> <a class="brand" href="#home" onclick="navigate('home')">   <img src="/media/images/LostThenFound-Logo-Transparent2.png""        alt="Lost Then Found Ministries"        class="site-logo"></div> </a>
 <button aria-label="Toggle navigation" class="menu" onclick="document.querySelector('.links').classList.toggle('open')">☰</button><nav aria-label="Main navigation" class="links"><button data-nav="home" onclick="navigate('home')">Home</button><button data-nav="devotionals" onclick="navigate('devotionals')">Devotionals</button><button data-nav="pastors" onclick="navigate('pastors')">For Pastors</button><button data-nav="journal" onclick="navigate('journal')">Journal</button><button data-nav="shop" onclick="navigate('shop')">Shop</button><button data-nav="about" onclick="navigate('about')">About</button><button class="navsupport" data-nav="support" onclick="navigate('support')">Support the Mission</button></nav></div></header>
 <main>
