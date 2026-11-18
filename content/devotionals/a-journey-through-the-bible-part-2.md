@@ -9,6 +9,7 @@ description: >-
   struggles, and moments of faithfulness. Each devotional encourages you to read
   Scripture for yourself, reflect on what God is teaching, and discover how His
   Word applies to your everyday life.
+category: Bible Series
 cover: /media/images/lostthenfoundpart2kindlecoverupdated.jpg
 pdf: /media/documents/lostthenfoundpart2interior.pdf
 amazon_url: https://a.co/d/0iCfTilt
