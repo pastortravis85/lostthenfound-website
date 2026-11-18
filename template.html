@@ -39,7 +39,8 @@ footer{background:#204a43!important}button:focus-visible,a:focus-visible{outline
     width: 125px;
   }
 }
-/* Lost Then Found header layout */
+
+/* Lost Then Found header */
 .header .wrap.nav {
   display: flex;
   flex-direction: row;
@@ -47,28 +48,55 @@ footer{background:#204a43!important}button:focus-visible,a:focus-visible{outline
   justify-content: space-between;
   flex-wrap: nowrap;
   gap: 24px;
+  min-height: 100px;
 }
 
 .header .brand {
   display: flex;
   align-items: center;
-  flex-shrink: 0;
+  flex: 0 0 auto;
+  text-decoration: none;
 }
 
 .header .site-logo {
   display: block;
-  width: 115px;
+  width: 125px;
   height: auto;
 }
 
 .header .links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  gap: 16px;
   margin-left: auto;
+  width: auto;
 }
 
 @media (max-width: 850px) {
+  .header .wrap.nav {
+    min-height: 80px;
+  }
+
+  .header .site-logo {
+    width: 105px;
+  }
+
   .header .links {
     display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
     margin-left: 0;
+    padding: 18px 26px;
+    background: var(--cream);
+    box-shadow: 0 12px 20px #0002;
   }
 
   .header .links.open {
