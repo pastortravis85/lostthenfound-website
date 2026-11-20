@@ -4,7 +4,7 @@ date: 2026-11-20
 excerpt: The small things in life are easily overlooked and, most of the time,
   ignored. But when God is involved, those small things can change the outcome,
   move us in a mighty way, and show us how God is working in our lives.
-cover: /media/images/the-god-of-small-things-lost-and-found.png
+cover: /media/images/small-things-wide.png
 published: true
 ---
 Have you ever felt like you were too small or insignificant to be used by God? Have you ever thought God didn't want to be bothered with your small requests? Have you ever felt like you just couldn't go on?
